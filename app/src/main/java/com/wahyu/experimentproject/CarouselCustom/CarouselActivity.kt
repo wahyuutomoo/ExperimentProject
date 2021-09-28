@@ -1,5 +1,6 @@
 package com.wahyu.experimentproject.CarouselCustom
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.wahyu.experimentproject.VideoScroll.VideoScrollActivity
 import com.wahyu.experimentproject.databinding.ActivityCarouselBinding
 import java.lang.Math.abs
 
@@ -62,11 +64,22 @@ class CarouselActivity : AppCompatActivity() {
         })
 
         binding.wormDotsIndicator.setViewPager2(binding.vpImageSlider)
+
+
+        handleAction()
     }
 
     private val sliderRunnable = Runnable {
         binding.vpImageSlider.currentItem = binding.vpImageSlider.currentItem + 1
     }
+
+
+    private fun handleAction() {
+        binding.btnVideo.setOnClickListener {
+            startActivity(Intent(this, VideoScrollActivity::class.java))
+        }
+    }
+
 
 
 }
