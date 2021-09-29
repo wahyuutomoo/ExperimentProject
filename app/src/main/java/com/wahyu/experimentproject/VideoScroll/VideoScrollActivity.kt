@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
+import androidx.recyclerview.widget.*
 import com.google.android.exoplayer2.upstream.DataSource
 import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.util.Util
@@ -44,17 +41,23 @@ class VideoScrollActivity : AppCompatActivity() {
     }
 
 
-
     private fun handleAdapter() {
-
         videoScrollAdapter = VideoScrollAdapter(videoItem, this, binding.rvVideo)
         binding.rvVideo.apply {
             adapter = videoScrollAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL ,false)
         }
         snapHelper.attachToRecyclerView(binding.rvVideo)
-    }
 
 
+
+        val snapOnScrollListener = SnapOnScrollListene(snapHelper)
+        binding.rvVideo.addOnScrollListener(snapOnScrollListener)
+
+
+
+        println("snapOnScrollListener $snapOnScrollListener")
+
+      }
 
 }

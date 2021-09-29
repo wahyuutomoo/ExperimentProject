@@ -3,7 +3,9 @@ package com.wahyu.experimentproject.VideoScroll
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
@@ -25,6 +27,8 @@ class VideoScrollAdapter(
 
     private lateinit var simpleExoPlayer: SimpleExoPlayer
     private lateinit var mediaSource: MediaSource
+    private val dinearSnapHelper = LinearSnapHelper()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VideoScrollAdapter.ViewHolder (
         ItemVideoScrollBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -33,10 +37,11 @@ class VideoScrollAdapter(
     override fun onBindViewHolder(holder: VideoScrollAdapter.ViewHolder, position: Int) {
       val data = videoItem[position]
 
-        println("EDJDJKHKFJ ${holder.getAdapterPosition()}")
         initPlayer(holder)
         holder.binding.exoPlayerView.hideController()
-//        simpleExoPlayer.play()
+
+
+
     }
 
     override fun getItemCount() = videoItem.size
@@ -80,6 +85,7 @@ class VideoScrollAdapter(
 
         simpleExoPlayer.addListener(playerListiner)
     }
+
 
 
 }
