@@ -15,7 +15,7 @@ import com.wahyu.experimentproject.databinding.ActivityCarouselBinding.inflate
 import com.wahyu.experimentproject.databinding.ActivityVideoScrollBinding
 import com.wahyu.experimentproject.databinding.ActivityVideoScrollBinding.inflate
 
-class VideoScrollActivity : AppCompatActivity() {
+class VideoScrollActivity : AppCompatActivity(), SnapOnScrollListene.CallBAckItem {
 
     private lateinit var binding: ActivityVideoScrollBinding
     private lateinit var videoScrollAdapter: VideoScrollAdapter
@@ -51,7 +51,7 @@ class VideoScrollActivity : AppCompatActivity() {
 
 
 
-        val snapOnScrollListener = SnapOnScrollListene(snapHelper)
+        val snapOnScrollListener = SnapOnScrollListene(snapHelper, calbackitem = this)
         binding.rvVideo.addOnScrollListener(snapOnScrollListener)
 
 
@@ -59,5 +59,9 @@ class VideoScrollActivity : AppCompatActivity() {
         println("snapOnScrollListener $snapOnScrollListener")
 
       }
+
+    override fun onchange(result: Int) {
+        println("COBBABABABABAB $result")
+    }
 
 }
